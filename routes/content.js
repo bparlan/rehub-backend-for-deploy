@@ -112,16 +112,19 @@ router.post("/updateContent/:id", uploadMultiple, async (req, res) => {
     const { id } = req.params;
 
     // if (req.files) {
+    const checkSpaceExist = await content.findOne({ _id: id });
+    console.log("checkSpaceExist checkSpaceExist", checkSpaceExist);
+
     const urlOne = req.files.picture1
       ? `uploads/${req.files.picture1[0].filename}`
       : (checkSpaceExist && checkSpaceExist.picture1) || null;
-    const urlSecond = req.files.picture2
+      const urlSecond = req.files.picture2
       ? `uploads/${req.files.picture2[0].filename}`
       : (checkSpaceExist && checkSpaceExist.picture2) || null;
-    const urlthird = req.files.picture3
+      const urlthird = req.files.picture3
       ? `uploads/${req.files.picture3[0].filename}`
       : (checkSpaceExist && checkSpaceExist.picture3) || null;
-    console.log("urlOne", urlOne);
+      console.log("urlOne", urlOne);
     console.log("urlSecond", urlOne);
     console.log("urlthird", urlthird);
 
